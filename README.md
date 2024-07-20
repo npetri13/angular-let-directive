@@ -1,4 +1,4 @@
-# shareReplay Test
+# The new @let Directive
 
 This small application shows one use case for the new @let directive
 

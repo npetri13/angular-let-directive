@@ -19,14 +19,12 @@ type Person = {
   <pre>{{ vmForAsyncPipe$ | async| json }}</pre>
 
   <h1>With &commat; directive</h1>
-  @let femaleCount = (vmAsSignal()?.filter((person) => person.gender === 'Female'));
-  @let maleCount = (vmAsSignal()?.filter((person) => person.gender === 'Male'));
   `,
 })
 export class App {
   #httpClient = inject(HttpClient);
   #request$ = this.#httpClient.get<Person[]>(
-    'https://random-data-api.com/api/v2/users?size=100'
+    'https://random-data-api.com/api/v2/users?size=20'
   );
   visible = signal<boolean>(false);
 
@@ -35,7 +33,7 @@ export class App {
       return {
         femalesCount: data.filter((person) => person.gender === 'Female')
           .length,
-        malesCount: data.filter((person) => person.gender !== 'Male').length,
+        malesCount: data.filter((person) => person.gender !== 'Female').length,
       };
     })
   );
